@@ -1,0 +1,42 @@
+
+Create an index.html file that plays a fullscreen YouTube video using an iframe
+# The video will autoplay and have no controls, suitable for Webex signage mode
+
+# Define the HTML content
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fullscreen Video</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&mute=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</body>
+</html>
+'''
+
+# Replace VIDEO_ID with a sample video ID or leave it for user to customize
+html_content = html_content.replace("VIDEO_ID", "KNIP2FpdkCw")  # Example video ID
+
+# Save the HTML content to index.html
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+# Confirm the file creation
+print("index.html file has been created with fullscreen YouTube video settings.")
