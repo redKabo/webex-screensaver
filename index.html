@@ -1,13 +1,8 @@
-
-Create an index.html file that plays a fullscreen YouTube video using an iframe
-# The video will autoplay and have no controls, suitable for Webex signage mode
-
-# Define the HTML content
-html_content = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Video</title>
+  <title>Fullscreen ScreenPal Video</title>
   <style>
     html, body {
       margin: 0;
@@ -15,29 +10,17 @@ html_content = '''<!DOCTYPE html>
       height: 100%;
       background-color: black;
     }
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .sp-embed-player {
       width: 100%;
       height: 100%;
-      border: none;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=showinfo=0&rel=0&modestbranding=1&mute=1"></iframe>
-
-</body>
-</html>
-'''
-
-# Replace VIDEO_ID with a sample video ID or leave it for user to customize
-html_content = html_content.replace("VIDEO_ID", "KNIP2FpdkCw")  # Example video ID
-
-# Save the HTML content to index.html
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-# Confirm the file creation
-print("index.html file has been created with fullscreen YouTube video settings.")
+  <div class="sp-embed-player" data-id="cTQvlYnDzMR">
+    <script src="https://go.screenpal.com/player/appearance/cTQvlYnDzMRwidth="100%" height="100%" style="border:0;" scrolling="no"
