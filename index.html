@@ -24,35 +24,10 @@
 </head>
 <body>
 
-<!-- The "loop" attribute is kept as a fallback -->
-<video autoplay muted loop playsinline id="signage-video">
-  <source src="your_video_name.mp4" type="video/mp4">
+<video autoplay muted loop playsinline>
+  <source src="MK MOOD_25mb_H264.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
-<script>
-  window.onload = function() {
-    var video = document.getElementById('signage-video');
-    
-    // --- Start playback ---
-    var playPromise = video.play();
-
-    if (playPromise !== undefined) {
-      playPromise.then(_ => {
-        console.log("Video playback started.");
-      })
-      .catch(error => {
-        console.error("Video playback was prevented:", error);
-      });
-    }
-
-    // --- ADDED CODE: Listen for the 'ended' event to create a manual loop ---
-    video.addEventListener('ended', function() {
-      this.currentTime = 0; // Reset time to the beginning
-      this.play();           // Play the video again
-    }, false);
-  };
-</script>
 
 </body>
 </html>
