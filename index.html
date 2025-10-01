@@ -5,38 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webex Signage</title>
   <style>
-    body { margin: 0; background-color: black; }
-    video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    body {
+      /* Make sure the filename here EXACTLY matches the file you uploaded */
+      background-image: url('signage-image.jpg');
+
+      /* This ensures the image covers the entire screen */
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   </style>
 </head>
 <body>
-
-  <video id="signage-video" muted playsinline>
-    <source src="signage-video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <script>
-    const video = document.getElementById('signage-video');
-
-    // Manually handle looping
-    video.addEventListener('ended', function() {
-      video.currentTime = 0;
-      video.play();
-    });
-
-    // Force playback to start
-    const playPromise = video.play();
-
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        // This will now show a very specific error if the browser blocks the video
-        console.error("Autoplay was blocked:", error);
-        // We can add a visible message for debugging on the device
-        document.body.innerHTML = '<div style="color: white; font-size: 24px; text-align: center; padding-top: 50px;">Error: Autoplay is blocked.</div>';
-      });
-    }
-  </script>
-
+  <!-- The body is empty because the image is the background -->
 </body>
 </html>
