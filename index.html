@@ -29,5 +29,24 @@
   Your browser does not support the video tag.
 </video>
 
+  <!-- ADD THIS SCRIPT BLOCK -->
+<script>
+  window.onload = function() {
+    var video = document.getElementById('signage-video');
+    var playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // Autoplay started successfully.
+        console.log("Video playback started.");
+      })
+      .catch(error => {
+        // Autoplay was prevented.
+        console.error("Video playback was prevented:", error);
+      });
+    }
+  };
+</script>
+
 </body>
 </html>
