@@ -5,43 +5,52 @@
 <style>
   body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: black; }
   video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; }
+  /* Style for a helpful loading/error message */
+  #message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: sans-serif;
+    font-size: 24px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 15px;
+    border-radius: 10px;
+  }
 </style>
 </head>
 <body>
 
-<!-- Note the new "id" and the simplified filename in "src" -->
+<div id="message">Loading Video...</div>
+
 <video muted playsinline id="signage-video">
   <source src="signage-video.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 <script>
-  // This script will wait for the page to load, then force the video to play and loop.
   window.addEventListener('load', function() {
     var video = document.getElementById('signage-video');
+    var message = document.getElementById('message');
 
-    // Function to attempt to play the video
-    function attemptPlay() {
-      video.play()
-        .then(() => {
-          console.log("Video playback started successfully.");
-        })
-        .catch(error => {
-          console.error("Playback failed, will try again.", error);
-          // If it fails, try again in a moment.
-          setTimeout(attemptPlay, 1000);
-        });
-    }
-
-    // Listen for the video ending so we can manually loop it
-    video.addEventListener('ended', function() {
-      console.log("Video ended. Looping...");
-      video.currentTime = 0;
-      attemptPlay();
+    // Hide message and play video if it's ready
+    video.addEventListener('canplay', function() {
+      message.style.display = 'none';
+      video.play();
     });
 
-    // Start the first playback attempt
-    attemptPlay();
+    // If the video file can't be found (404 error, etc.)
+    video.addEventListener('error', function() {
+      message.innerText = "Error: Could not load video file. Check that the name is exactly 'signage-video.mp4'";
+      console.error("Error loading video file. Check path and filename in the repository.");
+    });
+
+    // Manually loop the video when it ends
+    video.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    });
   });
 </script>
 
